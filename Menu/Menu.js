@@ -37,12 +37,12 @@ let menuItems = [
 const menuComponent = items => {
   const menu = document.createElement('div')
   const list = document.createElement('ul')
-  menuItems.forEach(item => {
-    list.append(document.createElement('li').textContent(item))
+  items.forEach(itemName => {
+    let currentListItem = document.createElement('li')
+    currentListItem.textContent = itemName
+    list.append(currentListItem)
   })
-  for(let i=0; i < menuItems.length; i++) {
-    list.append(document.createElement('li'))
-  }
+
   menu.classList.add('menu')
   menu.append(
     list,
@@ -52,8 +52,10 @@ const menuComponent = items => {
 }
 
 const menu = menuComponent(menuItems)
-body.append(menu)
+
+const menuContainer = document.querySelector('.header')
+menuContainer.append(menu)
 
 document.querySelector('.menu-button').addEventListener('click', event => {
-  console.log('click!')
+  menu.classList.toggle('menu--open')
 })
